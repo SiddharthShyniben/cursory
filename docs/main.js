@@ -140,23 +140,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkdownParserService", function() { return MarkdownParserService; });
 /* harmony import */ var markdown_it__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! markdown-it */ "1M3H");
 /* harmony import */ var markdown_it__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(markdown_it__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var markdown_it_anchor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! markdown-it-anchor */ "HHgN");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 class MarkdownParserService {
     constructor() {
-        this.md = new markdown_it__WEBPACK_IMPORTED_MODULE_0__({
+        this.md = new markdown_it__WEBPACK_IMPORTED_MODULE_0___default.a({
             html: true,
             linkify: true,
             typographer: true
-        });
+        }).use(markdown_it_anchor__WEBPACK_IMPORTED_MODULE_1__["default"]);
     }
     parseMarkdown(markdown) {
         return this.md.render(markdown);
     }
 }
 MarkdownParserService.ɵfac = function MarkdownParserService_Factory(t) { return new (t || MarkdownParserService)(); };
-MarkdownParserService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: MarkdownParserService, factory: MarkdownParserService.ɵfac, providedIn: 'root' });
+MarkdownParserService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: MarkdownParserService, factory: MarkdownParserService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
