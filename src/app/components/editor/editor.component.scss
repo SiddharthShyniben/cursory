@@ -1,0 +1,17 @@
+section {
+	height: calc(100vh - 160px);
+}
+
+.columns {
+	height: inherit;
+
+}
+
+textarea {
+	height: calc(100vh - 160px - 1.5rem);
+}
+
+.notification {
+	height: calc(100vh - 160px - 1.5rem);
+	overflow: hidden;
+}
