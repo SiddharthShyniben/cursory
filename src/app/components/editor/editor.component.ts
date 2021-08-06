@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {SafeHtml} from '@angular/platform-browser';
 import {MarkdownParserService} from 'src/app/services/markdown-parser.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class EditorComponent {
 
 	constructor(private markdownParser: MarkdownParserService) {}
 
-	parseMD(markdown: string): string {
+	parseMD(markdown: string): SafeHtml {
 		return this.markdownParser.parseMarkdown(markdown)
 	}
 
