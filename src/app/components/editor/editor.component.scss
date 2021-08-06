@@ -4,7 +4,6 @@ section {
 
 .columns {
 	height: inherit;
-
 }
 
 textarea {
@@ -13,5 +12,5 @@ textarea {
 
 .notification {
 	height: calc(100vh - 160px - 1.5rem);
-	overflow: hidden;
+	overflow: scroll;
 }
