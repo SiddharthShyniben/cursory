@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import * as MarkdownIt from 'markdown-it';
-import * as MarkdownItAnchor from 'markdown-it-anchor';
+import MarkdownIt from 'markdown-it';
+import MarkdownItAnchor from 'markdown-it-anchor';
 
 @Injectable({
 	providedIn: 'root'
