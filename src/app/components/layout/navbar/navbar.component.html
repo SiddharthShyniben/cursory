@@ -4,14 +4,14 @@
 			<strong>Cursory</strong>
 		</a>
 
-		<a role='button' class='navbar-burger' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample'>
+		<a role='button' class='navbar-burger' aria-label='menu' (click)='toggleNav()'>
 			<span aria-hidden='true'></span>
 			<span aria-hidden='true'></span>
 			<span aria-hidden='true'></span>
 		</a>
 	</div>
 
-	<div id='topnav' class='navbar-menu'>
+	<div id='topnav' class='navbar-menu' [ngClass]='{"is-active": navOpen}'>
 		<div class='navbar-end'>
 			<div class='navbar-item has-dropdown is-right is-hoverable'>
 				<a class='navbar-link'>
