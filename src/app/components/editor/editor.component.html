@@ -6,11 +6,11 @@
 					<div class='field'>
 						<div class='control'>
 							<textarea
-									[(ngModel)]='formInput'
+									[(ngModel)]='markdownBody'
 									(change)='writeFile()'
 									(ngModelChange)='writeFile()'
 									name='markdown'
-									class='textarea'
+									class='textarea is-link'
 									placeholder='Start typing...'
 									style='width: 200%'></textarea>
 						</div>
@@ -18,29 +18,35 @@
 				</form>
 			</div>
 			<div class='column is-half'>
-				<article class='message is-link'>
+				<article class='message'>
 					<div class='message-header'>
 						<input class='input' [(ngModel)]='newFileName'> 
 						&nbsp;
 						<button class='button is-warning' (click)='updateFileName()'>Save</button>
 					</div>
-					<div class='message-body content' [innerHTML]='parseMD(formInput)'></div>
+					<div class='message-body content' [innerHTML]='parseMD(markdownBody)'></div>
 				</article>
 			</div>
-			<div class="column">
-				<nav class="panel is-link">
-					<p class="panel-heading">Files</p>
-					<div class="panel-block">
-						<p class="control has-icons-left">
-						<input class="input is-link" type="text" placeholder="Search">
-						<span class="icon is-left">
-							<i class="fas fa-search" aria-hidden="true"></i>
+			<div class='column'>
+				<nav class='panel is-link'>
+					<p class='panel-heading'>Files</p>
+					<div class='panel-block'>
+						<p class='control has-icons-left'>
+						<input class='input is-link' type='text' placeholder='Search'>
+						<span class='icon is-left'>
+							<i class='fas fa-search' aria-hidden='true'></i>
 						</span>
 						</p>
 					</div>
-					<div class="panel-block" *ngFor='let file of getFileList()'>
+					<a class='panel-block'
+						 *ngFor='let file of getFileList()'
+						 [ngClass]='{"is-active": file === currentFile}'
+						 (click)='openFile(file)'>
+						<span class='panel-icon'>
+							<i class='fas fa-book' aria-hidden='true'></i>
+						</span>
 						{{file}}
-					</div>
+					</a>
 				</nav>
 			</div>
 		</div>

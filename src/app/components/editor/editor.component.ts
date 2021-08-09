@@ -9,7 +9,7 @@ import {StorageService} from 'src/app/services/storage.service';
 	styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
-	formInput: string = '';
+	markdownBody: string = '';
 	currentFile: string = localStorage.getItem('latestFileEdit') || 'undefined.md';
 	newFileName: string = this.currentFile;
 
@@ -26,21 +26,26 @@ export class EditorComponent implements OnInit {
 	}
 
 	writeFile() {
-		this.storageService.writeFile(this.currentFile, this.formInput);
+		this.storageService.writeFile(this.currentFile, this.markdownBody);
 	}
 
 	loadFile() {
-		this.formInput = this.storageService.getFiles()[this.currentFile] || '';
+		this.markdownBody = this.storageService.getFiles()[this.currentFile] || '';
 	}
 
 	updateFileName() {
 		this.storageService.removeFile(this.currentFile);
-		this.storageService.writeFile(this.newFileName, this.formInput);
+		this.storageService.writeFile(this.newFileName, this.markdownBody);
 		this.currentFile = this.newFileName;
 		localStorage.setItem('latestFileEdit', this.currentFile)
 	}
 
 	getFileList() {
 		return Object.keys(this.storageService.getFiles())
+	}
+
+	openFile(filename: string) {
+		this.currentFile = this.newFileName = filename;
+		this.markdownBody = this.storageService.getFiles()[filename];
 	}
 }
