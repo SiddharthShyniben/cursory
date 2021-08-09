@@ -4,10 +4,10 @@ import {Injectable} from '@angular/core';
 	providedIn: 'root'
 })
 export class StorageService {
-	createFile(name: string, contents: string = ''): string | void {
+	writeFile(name: string, contents: string = ''): void {
 		let data = this._get();
-		if (data[name]) return 'E1';
 		data[name] = contents;
+		this._set(data)
 	}
 
 	getFiles(): {[x: string]: string} {
@@ -17,12 +17,6 @@ export class StorageService {
 	removeFile(key: string): void {
 		let data = this._get();
 		delete data[key];
-		this._set(data);
-	}
-
-	updateFile(name: string, contents: string = ''): void {
-		let data = this._get();
-		data[name] = contents;
 		this._set(data);
 	}
 
