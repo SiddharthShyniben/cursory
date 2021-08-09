@@ -12,6 +12,8 @@ export class EditorComponent implements OnInit {
 	markdownBody: string = '';
 	currentFile: string = localStorage.getItem('latestFileEdit') || 'undefined.md';
 	newFileName: string = this.currentFile;
+	modalOpen: boolean = false;
+	deleting: string = ''
 
 	constructor(private markdownParser: MarkdownParserService, private storageService: StorageService) {}
 
@@ -47,5 +49,22 @@ export class EditorComponent implements OnInit {
 	openFile(filename: string) {
 		this.currentFile = this.newFileName = filename;
 		this.markdownBody = this.storageService.getFiles()[filename];
+	}
+
+	deleteFile(fileName: string) {
+		// Show modal
+		this.modalOpen = true;
+		this.deleting = fileName;
+	}
+
+	confirmDelete() {
+		this.storageService.removeFile(this.deleting);
+		// LOL
+		this.abortDelete();
+	}
+
+	abortDelete() {
+		this.modalOpen = false;
+		this.deleting = '';
 	}
 }

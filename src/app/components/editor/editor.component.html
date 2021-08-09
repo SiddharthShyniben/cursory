@@ -1,6 +1,8 @@
 <section class='section'>
 	<div class='container'>
 		<div class='columns is-multiline'>
+
+			<!-- Main Editor -->
 			<div class='column is-half'>
 				<form>
 					<div class='field'>
@@ -17,6 +19,8 @@
 					</div>
 				</form>
 			</div>
+
+			<!-- Output -->
 			<div class='column is-half'>
 				<article class='message'>
 					<div class='message-header'>
@@ -27,28 +31,45 @@
 					<div class='message-body content' [innerHTML]='parseMD(markdownBody)'></div>
 				</article>
 			</div>
+
+			<!-- File manager -->
 			<div class='column'>
 				<nav class='panel is-link'>
 					<p class='panel-heading'>Files</p>
-					<div class='panel-block'>
-						<p class='control has-icons-left'>
-						<input class='input is-link' type='text' placeholder='Search'>
-						<span class='icon is-left'>
-							<i class='fas fa-search' aria-hidden='true'></i>
-						</span>
-						</p>
-					</div>
 					<a class='panel-block'
 						 *ngFor='let file of getFileList()'
 						 [ngClass]='{"is-active": file === currentFile}'
 						 (click)='openFile(file)'>
-						<span class='panel-icon'>
-							<i class='fas fa-book' aria-hidden='true'></i>
+						<span class='panel-icon has-text-red'>
+							<i class='fas fa-trash' aria-hidden='true' (click)='deleteFile(file)'></i>
 						</span>
 						{{file}}
 					</a>
+					<a class='panel-block has-text-grey' *ngIf='getFileList().length === 0'><small><em>No files here</em></small></a>
 				</nav>
 			</div>
 		</div>
 	</div>
 </section>
+
+<!-- Delete Modal -->
+<div class='modal' [ngClass]='{"is-active": modalOpen}'>
+	<div class='modal-background'></div>
+	<div class='modal-content has-background-white has-text-dark p-3'>
+		<p>Are you sure?</p>
+		<br>
+		<div class='field is-grouped'>
+			<p class='control'>
+			<button class='button' (click)='abortDelete()'>
+				Cancel
+			</button>
+			</p>
+			<p class='control'>
+			<button class='button is-danger' (click)='confirmDelete()'>
+				Delete
+			</button>
+			</p>
+		</div>
+	</div>
+	<button class='modal-close' (click)='abortDelete()'></button>
+</div>
