@@ -8,6 +8,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import {FormsModule} from '@angular/forms';
+import { EditorParentComponent } from './components/editor-parent/editor-parent.component';
 
 @NgModule({
 	declarations: [
@@ -15,7 +16,8 @@ import {FormsModule} from '@angular/forms';
 		EditorComponent,
 		LayoutComponent,
 		NavbarComponent,
-		FooterComponent
+		FooterComponent,
+  EditorParentComponent
 	],
 	imports: [
 		BrowserModule,
